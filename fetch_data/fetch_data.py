@@ -58,4 +58,4 @@ def get_data():
 # %%
 get_data()
 
-
+# check why it get error when rerun
