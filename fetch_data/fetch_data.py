@@ -8,7 +8,7 @@ import os
 # CONFIGURATION
 # Include required fields
 FIELDS = [
-    'cusip', 'issueDate', 'securityType', 'securityTerm', 'auctionDateYear', 'issueDate', 'maturityDate', 'datedDate', 'maturingDate',
+    'cusip', 'issueDate', 'securityType', 'securityTerm', 'auctionDateYear', 'maturityDate', 'datedDate', 'maturingDate',
     'auctionFormat', 'closingTimeCompetitive', 'offeringAmount', 'allocationPercentage', 'totalTendered', 'totalAccepted', 'bidToCoverRatio',
     'interestRate', 'highYield', 'lowYield', 'averageMedianYield', 'highDiscountRate', 'lowDiscountRate', 'highInvestmentRate', 'lowInvestmentRate',
     'highPrice', 'lowPrice', 'pricePer100', 'updatedTimestamp'
@@ -30,7 +30,7 @@ def get_data():
     df = pd.DataFrame(new_records['securityList'])
     # check if required field existed in the API response
     required_fields = [field for field in FIELDS if field in df.columns]
-    new_df = df[required_fields]
+    new_df = df[required_fields].copy()
 
     # HANDLE NEW RECORDS AND ADD TO EXISTING EXCEL FILE (ONLY IF AVAILABLE)
     if os.path.exists(CSV_FILE):
@@ -39,7 +39,7 @@ def get_data():
         new_df['unique_id'] = new_df['cusip'].astype('str')
         existing_df['unique_id'] = existing_df['cusip'].astype('str')
         # filter the data, only keep new/non-existing records
-        records_to_add = new_df[~new_df['unique_id'].isin(existing_df['unique_id'])]
+        records_to_add = new_df[~new_df['unique_id'].isin(existing_df['unique_id'])].copy()
         # remove the helper column
         records_to_add = records_to_add.drop(columns=['unique_id'])
         
@@ -55,7 +55,6 @@ def get_data():
         new_df.to_csv(CSV_FILE, index=False)
         print('New CSV file created!')
 
-# %%
-get_data()
+if __name__ == "__main__":
+    get_data()
 
-# check why it get error when rerun
