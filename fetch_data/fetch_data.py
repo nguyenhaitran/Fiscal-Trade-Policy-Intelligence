@@ -15,7 +15,8 @@ FIELDS = [
 ]
 
 # Excel file to keep updating
-CSV_FILE = "fetch_data/US_Auction_Data.csv"
+base_path = os.path.dirname(os.path.abspath(__file__)) # get the original place of the script
+CSV_FILE = os.path.join(base_path, "US_Auction_Data.csv") # point to the csv file 
 # Treasury Direct API
 API_URL = "https://www.treasurydirect.gov/TA_WS/securities/jqsearch"
 
