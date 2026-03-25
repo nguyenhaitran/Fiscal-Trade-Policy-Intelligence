@@ -3,6 +3,8 @@
 import requests
 import pandas as pd
 import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # %%
 # CONFIGURATION
@@ -33,6 +35,15 @@ def get_data():
     required_fields = [field for field in FIELDS if field in df.columns]
     new_df = df[required_fields].copy()
 
+    # Put the data into the speadsheet
+    # Step 1: Setup the connection
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/henrytran/Documents/GitHub/Fiscal-Trade-Policy-Intelligence/Robot Key/Fiscal Index Intelligence.json', scope) # take the credential
+    client = gspread.authorize(creds)
+
+    # Step 2: Open the Sheet
+    sheet = client.open("Fiscal_Trade_Index").worksheet("US_Auction")
+
     # HANDLE NEW RECORDS AND ADD TO EXISTING EXCEL FILE (ONLY IF AVAILABLE)
     if os.path.exists(CSV_FILE):
         existing_df = pd.read_csv(CSV_FILE)
@@ -47,7 +58,19 @@ def get_data():
         # add new data to the current csv file
         if not records_to_add.empty:
             final_df = pd.concat([records_to_add, existing_df], ignore_index=True) # old one first, new one after
+            
+            # Step 3: Prepare the data
+            # Use .fillna('') to ensure no 'NaN' values in case of empty values
+            data_to_upload = [final_df.columns.values.tolist()] + final_df.fillna('').values.tolist()
+
             final_df.to_csv(CSV_FILE, index=False)
+
+            # Step 4: Upload to Google Cloud
+            sheet.clear() # Clears old data so you don't have duplicates
+            sheet.update('A1', data_to_upload)
+
+            print("Data successfully synced to Google Sheets!")
+
             print('There are {} new records!'.format(len(records_to_add)))
         else:
             print('No new records found!')
