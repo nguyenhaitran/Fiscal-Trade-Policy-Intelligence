@@ -1,5 +1,7 @@
 cusip,issueDate,securityType,securityTerm,auctionDateYear,maturityDate,datedDate,maturingDate,auctionFormat,closingTimeCompetitive,offeringAmount,allocationPercentage,totalTendered,totalAccepted,bidToCoverRatio,interestRate,highYield,lowYield,averageMedianYield,highDiscountRate,lowDiscountRate,highInvestmentRate,lowInvestmentRate,highPrice,lowPrice,pricePer100,updatedTimestamp,issueDate.1,unique_id
-912797US4,2026-04-07T00:00:00,Bill,17-Week,2026,2026-08-04T00:00:00,,2026-04-07T00:00:00,Single-Price,11:30 AM,69000000000,,,,,,,,,,,,,,,,2026-03-31T11:02:15,,
+91282CQJ3,2026-04-15T00:00:00,Note,3-Year,2026,2029-04-15T00:00:00,2026-04-15T00:00:00,2026-04-15T00:00:00,Single-Price,01:00 PM,58000000000,,,,,,,,,,,,,,,,2026-04-02T11:02:23,,
+912797UJ4,2026-04-09T00:00:00,Bill,26-Week,2026,2026-10-08T00:00:00,,2026-04-09T00:00:00,Single-Price,11:30 AM,77000000000,,,,,,,,,,,,,,,,2026-04-02T11:02:29,,
+912797US4,2026-04-07T00:00:00,Bill,17-Week,2026,2026-08-04T00:00:00,,2026-04-07T00:00:00,Single-Price,11:30 AM,69000000000,,,,,,,,,,,,,,,,2026-03-31T11:02:15,,912797US4
 912797UR6,2026-03-31T00:00:00,Bill,17-Week,2026,2026-07-28T00:00:00,,2026-03-31T00:00:00,Single-Price,11:30 AM,69000000000,,,,,,,,,,,,,,,,2026-03-24T11:02:03,,912797UR6
 91282CQF1,2026-03-31T00:00:00,Note,7-Year,2026,2033-03-31T00:00:00,2026-03-31T00:00:00,2026-03-31T00:00:00,Single-Price,01:00 PM,44000000000,,,,,,,,,,,,,,,,2026-03-19T11:02:04,,91282CQF1
 91282CQG9,2026-03-31T00:00:00,Note,5-Year,2026,2031-03-31T00:00:00,2026-03-31T00:00:00,2026-03-31T00:00:00,Single-Price,01:00 PM,70000000000,,,,,,,,,,,,,,,,2026-03-19T11:07:17,,91282CQG9
