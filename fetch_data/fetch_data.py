@@ -3,8 +3,9 @@
 import requests
 import pandas as pd
 import os
+from dotenv import load_dotenv
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 
 # %%
 # CONFIGURATION
@@ -19,12 +20,14 @@ auction_fields = ['cusip', 'auctionDate', 'auctionDateYear', 'announcementDate',
 bidder_fields = ['cusip', 'totalAccepted', 'primaryDealerAccepted', 'directBidderAccepted', 'indirectBidderAccepted', 'fimaNoncompetitiveAccepted', 'somaAccepted', 
                 'competitiveAccepted', 'noncompetitiveAccepted','treasuryRetailAccepted']
 
-
 # Excel file to keep updating
 base_path = os.path.dirname(os.path.abspath(__file__)) # get the original place of the script
 CSV_FILE = os.path.join(base_path, "US_Auction_Data.csv") # point to the csv file 
 # Treasury Direct API
 API_URL = "https://www.treasurydirect.gov/TA_WS/securities/jqsearch"
+
+# Load the .env file
+load_dotenv()
 
 # %%
 # Fetch the data
@@ -35,6 +38,8 @@ def get_data():
 
     # Only keep the required fields
     df = pd.DataFrame(new_records['securityList'])
+    df = df.drop_duplicates(subset=['cusip'], keep='last')
+    df = df.fillna('')
 
     # check if required field existed in the API response
     #security_required_fields = [field for field in security_fields if field in df.columns]
@@ -46,15 +51,29 @@ def get_data():
 
     # full worksheet copy
     master_df = df.copy()
-    #master_df['issueDate'] = master_df['issueDate'].dt.strftime('%Y-%m-%d')
-    master_df = master_df.fillna('')
 
     # Put the data into the speadsheet
     # Step 1: Setup the connection
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/henrytran/Documents/GitHub/Fiscal-Trade-Policy-Intelligence/Robot Key/Fiscal Index Intelligence.json', scope) # take the credential
+
+    # JSON string from the Github secret variable
+    json_secret = os.getenv('GCP_SERVICE_ACCOUNT_KEY')  
+    if json_secret:
+        # Use GitHub Secret
+        service_account_info = json.loads(json_secret)
+        creds = Credentials.from_service_account_info(service_account_info, scopes=scope)
+    else:
+        # Use local JSON file path from .env
+        local_key_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+        if not local_key_path:
+            raise ValueError("Credentials not found! Check your .env file or GitHub Secrets and variables")
+        creds = Credentials.from_service_account_file(local_key_path, scopes=scope)
+    #creds = Credentials.from_service_account_file(service_account_json, scope) # take the credential
     client = gspread.authorize(creds)
-    file = client.open('Fiscal_Trade_Index')
+    try:
+        file = client.open('Fiscal_Trade_Index')
+    except:
+        print('Error: Google Sheet not found! Ensure it is shared with your Service Account email.')
 
     # Step 2: Open the sheets
     worksheets = {

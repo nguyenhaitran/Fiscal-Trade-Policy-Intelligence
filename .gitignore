@@ -138,3 +138,5 @@ notes.txt
 *.bak*
 *.pyc
 data/
+
+Robot Key/*.json
