@@ -3,7 +3,7 @@
 import requests
 import pandas as pd
 import os
-import gspreadÍ›
+import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 # %%
