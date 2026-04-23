@@ -26,7 +26,7 @@ bidder_fields = ['cusip',
                 'fimaNoncompetitiveAccepted', 'fimaNoncompetitiveTendered',
                 'somaAccepted', 'somaTendered',
                 'competitiveAccepted', 'competitiveTendered',
-                'noncompetitiveAccepted', 'noncompetitiveTendered',
+                'noncompetitiveAccepted',
                 'treasuryRetailAccepted']
 
 # Excel file to keep updating
