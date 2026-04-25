@@ -139,4 +139,6 @@ notes.txt
 *.pyc
 data/
 
-Robot Key/*.json
+.env
+*.json
+.Google_Cred/
