@@ -34,13 +34,31 @@ load_dotenv()
 # Fetch the data
 def get_data():
     # FETCH API DATA
-    response = requests.get(API_URL)
-    new_records = response.json()
+    params ={
+        'startDate': '1998-01-01',
+        'format': 'json'
+    }
+
+    response = requests.get(API_URL, params=params)
+
+    # if API call is unsuccessful, print the error code and exit
+    if response.status_code != 200:
+        print(f"Error fetching data: {response.status_code}")
+        return
+
+    new_records=response.json()
 
     # Only keep the required fields
     df = pd.DataFrame(new_records['securityList'])
-    df = df.drop_duplicates(subset=['cusip'], keep='last')
+    df = df.drop_duplicates(subset=['cusip', 'auctionDate'], keep='last')
     df = df.fillna('')
+
+    # Filter the data to only include records with auctionDate after 1998-01-01
+    df['auctionDate'] = pd.to_datetime(df['auctionDate'])
+    df = df[df['auctionDate'] >= '1998-01-01']
+
+    # Convert dates back to date string for Google Sheets compatibility
+    df['auctionDate'] = df['auctionDate'].dt.strftime('%Y-%m-%d')
 
     # check if required field existed in the API response
     #security_required_fields = [field for field in security_fields if field in df.columns]

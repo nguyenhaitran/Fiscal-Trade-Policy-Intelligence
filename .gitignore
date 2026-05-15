@@ -70,6 +70,5 @@ $RECYCLE.BIN/
 .Trash-*
 
 # Credentials and sensitive information
-.env
 *.json
 .Google_Cred/
