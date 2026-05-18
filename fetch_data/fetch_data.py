@@ -18,8 +18,16 @@ auction_fields = ['cusip', 'auctionDate', 'auctionDateYear', 'announcementDate',
             'averageMedianYield', 'highDiscountRate', 'lowDiscountRate', 'highInvestmentRate', 'lowInvestmentRate', 'highPrice', 'lowPrice', 'pricePer100', 'updatedTimestamp'
 ]
 
-bidder_fields = ['cusip', 'totalAccepted', 'primaryDealerAccepted', 'directBidderAccepted', 'indirectBidderAccepted', 'fimaNoncompetitiveAccepted', 'somaAccepted', 
-                'competitiveAccepted', 'noncompetitiveAccepted','treasuryRetailAccepted']
+bidder_fields = ['cusip', 
+                'totalAccepted', 'totalTendered',
+                'primaryDealerAccepted', 'primaryDealerTendered',
+                'directBidderAccepted', 'directBidderTendered',
+                'indirectBidderAccepted', 'indirectBidderTendered',
+                'fimaNoncompetitiveAccepted', 'fimaNoncompetitiveTendered',
+                'somaAccepted', 'somaTendered',
+                'competitiveAccepted', 'competitiveTendered',
+                'noncompetitiveAccepted',
+                'treasuryRetailAccepted']
 
 # Excel file to keep updating
 base_path = os.path.dirname(os.path.abspath(__file__)) # get the original place of the script
