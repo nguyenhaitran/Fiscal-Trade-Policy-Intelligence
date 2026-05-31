@@ -1,539 +1,79 @@
-# Treasury Auction & Fiscal Policy Analytics
+# US Treasury Auction & Economic Sentiment Analytic Dashboard
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-treasury--analytics.duckdns.org-blue?style=for-the-badge&logo=streamlit)](https://treasury-analytics.duckdns.org/)
-[![Status](https://img.shields.io/badge/Status-Live-success?style=for-the-badge)](https://treasury-analytics.duckdns.org/)
+An ultimate dashboard analyzing U.S. Treasury auction data and its correlation with economic sentiment (fiscal, trade, and tariff) derived from news articles. 
 
-> **Live Application:** [https://treasury-analytics.duckdns.org](https://treasury-analytics.duckdns.org/)
-
-An advanced analytics platform for analyzing U.S. Treasury auction data and its correlation with fiscal policy sentiment derived from news articles. Built with Python, PostgreSQL, and Streamlit.
+Tech Stack: Python, PowerBI, Google Service
 
 ---
 
-## Features
+## A. Background
+### 1. The Importance of The US Treasury
+The US Treasury market is the biggest and most liquid financial market in the world as it is the main source of funding for US government activities. Treasury securities are regarded as the ultimate "risk-free" asset because they are backed by the United States's full faith and credit. As a result, they set the standard for interest rates globally and have an impact on everything from house mortgages to international trade finance.
 
-### **Treasury Auction Analytics**
+### 2. Economic Policy and Indices
+Treasury acutions are highly sensitive to Economical Policy Indices. The changes in Trade, Tariff and Fiscal policy create market sentiment that directly impact investors' decisions.
+- Fiscal News shows how a governement modifies their spending, tax rates to monitor and influence national economy. They affect people expectation around debt supply and long-term sustainability. 
+- Trade and Tariff News represent how a government exchanges goods and services between countries and the tax or duty imposed by that government on those imported or exported goods and services. These news can affect how much people are interested in the auctions (Bid-to-Cover Ratio) and how big the gap between highest and lowest yields for the auctions (Yield Tail or Yield Difference).
 
-- **Real-time auction data** from U.S. Treasury API
-- **10,000+ historical auction records** dating back to 2020
-- Comprehensive metrics:
-  - Bid-to-Cover Ratios
-  - Yield curves (2Y, 5Y, 10Y, 30Y)
-  - Primary Dealer participation
-  - FIMA (Foreign & International Monetary Authorities) participation
-  - SOMA (Federal Reserve) participation
-  - Competitive vs Non-competitive bids
+### 3. The way the Dashboard resolves the problem
+To analysis the US Treasury Auctions and Economic Policy Shift, there are two primary problems:
+- Data Decentralisation: US Treasury Auction are stored in a massive, unoptimised data spreadsheet and having many missing values, large numbers, and inconsistent format. making it difficult to find the underlying trends.
+- Unstructured News Data: The economical news are in the text-format and includes various topics. The main problem lies in classifying the economical news and converted them into 3 type of economical indices to measure the shifts of the economic.
 
-### **Interactive Comparisons**
+This dashboard resolves these issues by standardizing the economical news into Trade, Tariff and Fiscal Indices. By aligning them with the standardised US Treasury Auctions in the same timeline, the dashboard allows people to see exactly how specific the economic policy news translate into real-world auction performance.
 
-- Multi-select comparison tool for fiscal indices vs treasury metrics
-- Compare any combination of:
-  - **Fiscal Indices:** Fiscal Policy, Tariff, Non-Tariff
-  - **Treasury Metrics:** Bid-to-Cover, Dealer Shares, Yields, FIMA/SOMA participation
-- Dual-axis time series charts
-- Correlation scatter plots with trendlines
-- Interactive heatmaps
-- Statistical summary tables
-- CSV data export
+## B. Methodology
+### 1. Data Extraction
+- Unstructured Data Processing: To optimize operational costs and maintain data privacy, archival articles were sourced from the Wall Street Journal via ProQuest. A custom ETL Python script was developed to perform character recognition and tokenization on PDF sources. These tokens were then processed through a classification model to generate daily Trade, Tariff, and Fiscal Sentiment Indices.
+- API Integration & Automation: Developed a robust Python pipeline to ingest real-time data from the TreasuryDirect API. The script manages API pagination, historical filtering (post-1998), and credential-based authentication via Google Cloud Service Accounts to automate data fetching into a Google Sheets repository.
+- Schema Design: During the extraction phase, the script programmatically partitioned the raw data into a relational structure including three core tables: Auction, Security, and Bidder.
 
-### **Fiscal Policy Index**
+### 2. Data Transformation (Power Query)
+- Maturity Normalization: Standardized fragmented reissued debt data by utilizing "originalSecurityTerm". This allowed for the categorization of complex securities into "Short," "Medium," and "Long-Term" maturities for consistent longitudinal analysis.
 
-- Sentiment analysis from news articles
-- Daily tracking of fiscal policy discussions
-- Separate indices for:
-  - Overall fiscal policy
-  - Tariff-related policy
-  - Non-tariff fiscal policy
-- Top phrases and trending topics
+- Star Schema Modeling: Architected a Star Schema within Power BI, implementing a central DateTable as a temporal bridge. This bridge synchronizes high-frequency economic indices with periodic auction events, enabling multi-dataset correlation.
 
-### **Market Stress Indicators**
+- Advanced Data Shaping: Performed complex Unpivot operations on Security, Bidder, and Index tables. This transformation was critical for enabling dynamic cross-filtering, allowing the dashboard to dynamically update based on specific metric selections.
 
-- Yield spread analysis
-- Bid-to-Cover trend monitoring
-- Competitive vs Non-competitive bid composition
-- Early warning signals based on Brookings Institution framework
+### 3. Visualisation (PowerBI)
+- Dynamic Trend Mapping: Developed time-series visualizations, in combination of using DAX (Data Analysis Expressions) to calculate advanced financial metrics, such as the Yield Tail (High vs. Low Yield spread).
 
-### **Federal Reserve Participation**
+- Statistical Correlation: Integrated scatter plots with Linear Regression trendlines to empirically test the relationship between economic policy sentiment scores and auction outcomes.
 
-- FIMA participation tracking (foreign central banks)
-- SOMA participation tracking (Fed's own portfolio)
-- Historical trends by security type
-- Combined Fed impact analysis
+- Hierarchical Drill-Downs: Configured interactive hierarchies for both time-based,  security-based analysis. This allows stakeholders to check between high-level executive summaries and granular, auction-level details seamlessly.
 
-### **Advanced Analytics**
+## C. Insights
+### 1. Economic Policy Sentiment (2015–2025)
+- Geopolitical Volatility: The numbers of Trade and Tariff articles during the Trump administration reached intensities 2–3 times higher than those recorded during the COVID-19 pandemic or before the end of 2016. This significant rise in the volume of Trade and Tariff articles is directly reflected in the sustained peaks of the Trade and Tariff indices.
 
-- Rolling volatility analysis
-- Statistical summaries by security type
-- Rate spread analysis
-- Correlation matrices
+- Shifting Policy Focus: A granular shift in policy narrative was observed between Trump's election cycles: 
+    - The 2016–2020 period was characterized by targeted trade negotiations, specifically with China (US-China trade war).
+    - The 2024 election cycle has seen a pivot toward broader, global tariff frameworks.
 
----
+### 2. US Treasury Auction Dynamics (2010–Present)
+- Supply Focus: The Treasury continues to utilize Short-Term Bills as a primary liquidity, hosting significantly higher auction frequencies in this category compared to Medium or Long-Term Notes.
 
-## Architecture
+- Erosion of Demand Intensity: Even though the total tendered and total accepted amount increase overtime, there is a visible long-term decline in the Bid-to-Cover Ratio. While demand remained above the historical baseline prior to mid-2016 and during the 2020–2022 eras, the recent trend indicates changes in how the market willing to invest.
 
-### **Tech Stack**
+- Interest Rate and Median Yield Inversion & Spikes: Evidence of market stress is visible in the periodic "inversion" of interest rates and median yield; specifically, short and medium-term debt interest rate and median yield surpassed long-term ones in the two years after the 2016 election and the 2020 pandemic. This trend suggest that the situation at that time was unstable, while it would be more cooling-down in the future period.
 
-```
-Frontend:  Streamlit (Python)
-Backend:   Python 3.11
-Database:  PostgreSQL 15
-Container: Docker + Docker Compose
-Hosting:   AWS EC2 (Ubuntu)
-Domain:    DuckDNS (free subdomain)
-SSL:       Let's Encrypt (Certbot)
-Proxy:     Nginx
-```
+- Widening Yield Difference: The Yield Difference represents a proxy for market uncertainty. The smaller the Yield Difference, the higher the confidence the market. If the difference getting larger, which means that they have to raise the interest rate to attract more buyers. There was a significant expansion between 2018–2022 and another aggressive climb starting in the second half of 2024 for all security terms, suggesting that the market was nervous and find it hards to price the debt accurately.
 
-### **Data Pipeline**
+### 3. The Connection of Policy Indices & Auction Results (2015–2025)
+The decade between 2015 and 2025 illustrates a profound connection between Washington and the Treasury market.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Data Sources                            │
-├─────────────────────────────────────────────────────────────┤
-│  Treasury API          │  News APIs (Fiscal Analysis)       │
-│  (treasurydirect.gov)  │  (Article scraping & NLP)          │
-└────────┬───────────────┴────────────────┬───────────────────┘
-         │                                │
-         ▼                                ▼
-┌─────────────────────┐        ┌─────────────────────┐
-│ Treasury Pipeline   │        │ Fiscal Data Loader  │
-│ - Fetch auctions    │        │ - Scrape articles   │
-│ - Parse data        │        │ - Calculate indices │
-│ - Validate          │        │ - Extract phrases   │
-└─────────┬───────────┘        └──────────┬──────────┘
-          │                               │
-          └───────────┬───────────────────┘
-                      ▼
-          ┌───────────────────────┐
-          │   PostgreSQL Database │
-          │   - securities        │
-          │   - auctions          │
-          │   - bidder_details    │
-          │   - fiscal_indices    │
-          │   - top_phrases       │
-          └───────────┬───────────┘
-                      │
-                      ▼
-          ┌───────────────────────┐
-          │  Streamlit Dashboard  │
-          │  - Interactive UI     │
-          │  - Real-time queries  │
-          │  - Visualizations     │
-          └───────────────────────┘
-```
+- 2017 – Beginning of 2020 Period (The Trade Shock): High Trade Index scores during the initiation of the US-China trade conflict synchronized with a widened Yield Difference, declined Bid-to-Cover Ratio, and increased interest rate for short and medium security terms. These trends suggest that while the market willing to fund the government, there was a high degree of disagreement among bidders on how to price the debt during the economic uncertainty period.
 
----
+- 2020–2022 Period (The Crisis Support): During the pandemic, all the Economical Indices were below the baseline and the Interest Rate significantly dropped. Surprisingly, the Bid-to-Cover Ratio went up above the baseline during this time, repesented that the market was willing to support the governement debt during the pandemic.
 
-## 🗄️ Database Schema
+- 2022 - 2024 Period (Post Pandemic Adjusment): While all the Economical Indices still remained low during this period, the Average Interest Rate and the Median Yield of short and medium security terms surpassed the long term ones. This shows because after COVID-19, the market demand shifted their concentration in shorter term liquidities. 
 
-### **Core Tables**
+- 2024 – 2025 (The Tariff Pivot): In the second time of Trump Administation, the recent surge in the Tariff and Trade Indices (driven by White House's proposals for all countries) has coincided with another Yield Difference spike, suggesting another disagreement between bidders on how to price during this second uncertainty. Different to 2017-2020 period, the market is no longer absorbing news with high demand; instead, the rising Bid-to-Cover Ratio above baseline and the higher long-term security interest rate and yield suggest that investors are becoming more intersted and price-conscious at the same time within the policy volatility period becomes a normal thing.
 
-```sql
--- Parent: Securities
-securities (
-    cusip PK,
-    security_type,
-    security_term,
-    interest_rate,
-    maturity_date,
-    issue_date
-)
+### 4. Correlation: Policy Indices vs. Auction Metrics
+- Pricing for Risk: A clear positive correlation exists between policy sentiment spikes and the cost of borrowing. As Fiscal, Trade, or Tariff indices escalate, market participants demand higher Interest Rates and Median Yields to compensate for perceived policy risk.
 
--- Child: Auctions
-auctions (
-    auction_id PK,
-    cusip FK → securities,
-    auction_date,
-    bid_to_cover_ratio,
-    high_yield,
-    low_yield,
-    offering_amount,
-    total_accepted,
-    total_tendered
-)
+- Inelastic Demand: Despite price fluctuations, the Bid-to-Cover Ratio remains extremly stable across all index spikes. This validates the US Treasury's status as a safe asset; investors may adjust their price (Yield), but their fundamental intent to invest on the debts remains unchanged.
 
--- Child: Bidder Details
-bidder_details (
-    bidder_detail_id PK,
-    auction_id FK → auctions,
-    primary_dealer_percentage,
-    fima_percentage,
-    soma_percentage,
-    competitive_accepted,
-    noncompetitive_accepted
-)
-
--- Independent: Fiscal Data
-fiscal_policy_indices (
-    date PK,
-    fiscal_policy_index,
-    tariff_fiscal_index,
-    non_tariff_fiscal_index,
-    total_articles,
-    fiscal_articles
-)
-
-top_phrases (
-    phrase_id PK,
-    phrase,
-    count
-)
-```
-
-**Relationships:**
-
-- `Securities (1) → (Many) Auctions` via `cusip`
-- `Auctions (1) → (1) BidderDetails` via `auction_id`
-- `Auctions ⟷ FiscalPolicyIndices` via `date` (temporal join)
-
----
-
-## 🚀 Quick Start
-
-### **Prerequisites**
-
-- Docker & Docker Compose
-- Git
-- 2GB+ RAM
-- Internet connection (for data fetching)
-
-### **Local Development**
-
-```bash
-# Clone repository
-git clone https://github.com/yourusername/treasury-analytics.git
-cd treasury-analytics
-
-# Create .env file
-cat > .env << EOF
-POSTGRES_DB=treasury_db
-POSTGRES_USER=treasury_user
-POSTGRES_PASSWORD=your_secure_password
-POSTGRES_PORT=5432
-STREAMLIT_PORT=8501
-EOF
-
-# Start services
-docker-compose up -d
-
-# Check logs
-docker logs -f treasury_app
-
-# Access dashboard
-open http://localhost:8501
-```
-
-### **Initial Data Load**
-
-On first startup, the system automatically:
-
-1. Creates database schema
-2. Fetches ~10,000 historical auction records
-3. Processes and indexes data
-4. Starts daily update scheduler
-
-**Expected logs:**
-
-```
-INFO:__main__:Database is empty, running initial load...
-INFO:treasury_data_pipeline_v2:Loaded 10671 records from cache
-INFO:treasury_data_pipeline_v2:Pipeline completed: {'status': 'success', 'fetched': 10671, 'inserted': 10671}
-INFO:__main__:Scheduler started. Daily updates scheduled at 18:00
-```
-
----
-
-## 📦 Project Structure
-
-```
-treasury-analytics/
-├── app/
-│   ├── streamlit_dashboard.py      # Main dashboard UI
-│   ├── treasury_data_pipeline_v2.py # Treasury data fetcher
-│   ├── fiscal_data_loader.py       # Fiscal policy analyzer
-│   ├── models.py                   # SQLAlchemy models
-│   ├── scheduler.py                # Daily update scheduler
-│   ├── analytics.py                # Analysis utilities
-│   ├── validation.sql              # Validation testing queries                
-│   ├── requirements.txt            # Python dependencies
-│   └── Dockerfile                  # App container config
-├── init/
-│   └── init.sql                    # Database initialization
-├── data/                           # Cached data files
-├── docker-compose.yml              # Multi-container orchestration
-├── .env                            # Environment variables
-└── README.md
-```
-
----
-
-## Configuration
-
-### **Environment Variables**
-
-```bash
-# Database
-POSTGRES_DB=treasury_db
-POSTGRES_USER=treasury_user
-POSTGRES_PASSWORD=treasury_secure_pass_2025
-POSTGRES_PORT=5432
-
-# Application
-STREAMLIT_PORT=8501
-MAX_RECORDS=15000
-UPDATE_SCHEDULE_HOUR=18
-UPDATE_SCHEDULE_MINUTE=0
-```
-
-### **Data Update Schedule**
-
-- **Frequency:** Daily at 18:00 UTC
-- **Source:** U.S. Treasury API
-- **Records:** Incremental updates (new auctions only)
-- **Cache:** Local backup for faster restarts
-
----
-
-## 📊 Dashboard Pages
-
-### 1. ** Overview**
-
-- Key metrics summary
-- Bid-to-Cover trends
-- Auction distribution by type
-- Recent auction data
-
-### 2. **Interactive Comparisons** ⭐ NEW
-
-- Multi-select fiscal indices and treasury metrics
-- Time series comparisons (dual-axis)
-- Correlation scatter plots
-- Heatmap visualizations
-- Statistical summary tables
-- CSV export
-
-### 3. **Market Stress Indicators**
-
-- Yield spread analysis
-- Bid-to-Cover trends
-- Bid composition changes
-- Stress signal detection
-
-### 4. **Fed Participation (FIMA/SOMA)**
-
-- FIMA participation trends
-- SOMA participation analysis
-- Combined Fed impact
-- Security type breakdown
-
-### 5. **Advanced Analytics**
-
-- Rolling volatility
-- Statistical summaries
-- Rate spread analysis
-- Correlation matrices
-
-### 6. **Fiscal Policy Index**
-
-- Daily fiscal policy sentiment
-- Tariff vs Non-tariff indices
-- Article volume tracking
-- Trend visualization
-
-### 7. **Top Phrases**
-
-- Most frequent phrases in fiscal articles
-- Word cloud visualization
-- Phrase frequency treemap
-
-### 8. **Fiscal-Auction Correlation**
-
-- Correlation analysis
-- Dual-axis time series
-- Scatter plots
-- Full correlation matrix
-
----
-
-## 🔌 API Reference
-
-### **Treasury Data API**
-
-```python
-# Endpoint
-https://www.treasurydirect.gov/TA_WS/securities/jqsearch
-
-# Example request
-{
-    "startDate": "2020-01-01",
-    "endDate": "2025-10-13",
-    "pageSize": 250
-}
-```
-
-### **Database Connection**
-
-```python
-from sqlalchemy import create_engine
-
-DATABASE_URL = "postgresql://treasury_user:password@postgres:5432/treasury_db"
-engine = create_engine(DATABASE_URL)
-
-# Query example
-query = "SELECT * FROM auctions WHERE auction_date >= '2024-01-01'"
-df = pd.read_sql(query, engine)
-```
-
----
-
-## 🚢 Deployment
-
-### **AWS EC2 Deployment**
-
-The application is deployed on AWS EC2 with the following setup:
-
-```bash
-# Instance: t3.micro (Ubuntu 24.04)
-# Domain: treasury-analytics.duckdns.org
-# SSL: Let's Encrypt
-# Proxy: Nginx
-
-# Architecture
-User → DuckDNS → AWS EC2 → Nginx (443/80) → Streamlit (8501)
-                                ↓
-                           PostgreSQL (5432)
-```
-
-**Deployment steps:**
-
-1. SSH into EC2 instance
-2. Clone repository
-3. Configure environment variables
-4. Run `docker-compose up -d`
-5. Configure Nginx reverse proxy
-6. Set up SSL with Certbot
-7. Configure DuckDNS for dynamic DNS
-
-### **Manual Deployment**
-
-```bash
-# On local machine
-cd ~/capstone-project-11
-tar -czf treasury-app.tar.gz \
-  --exclude='*.pyc' \
-  --exclude='__pycache__' \
-  --exclude='.git' \
-  app/ docker-compose.yml .env init/
-
-# Upload to EC2
-scp treasury-app.tar.gz ubuntu@13.211.222.86:~/
-
-# On EC2
-ssh ubuntu@13.211.222.86
-tar -xzf treasury-app.tar.gz -C capstone-project-11/
-cd capstone-project-11
-docker-compose build
-docker-compose up -d
-```
-
----
-
-## 🛠️ Development
-
-### **Adding New Features**
-
-1. **New Data Source**
-
-   ```python
-   # Create new loader in app/
-   class NewDataLoader:
-       def fetch_data(self):
-           # Fetch logic
-           pass
-
-       def process_data(self, raw_data):
-           # Transform logic
-           pass
-   ```
-
-2. **New Database Table**
-
-   ```sql
-   -- Add to init/init.sql
-   CREATE TABLE new_table (
-       id SERIAL PRIMARY KEY,
-       ...
-   );
-   ```
-
-3. **New Dashboard Page**
-   ```python
-   # In streamlit_dashboard.py
-   elif page == "🆕 New Feature":
-       st.header("New Feature")
-       # Your code here
-   ```
-
-### **Running Tests**
-
-```bash
-# Unit tests
-docker exec -it treasury_app python -m pytest tests/
-
-# Database connection test
-docker exec -it treasury_postgres psql -U treasury_user -d treasury_db -c "SELECT COUNT(*) FROM auctions;"
-
-# Manual data refresh
-docker exec -it treasury_app python -c "
-from treasury_data_pipeline_v2 import TreasuryDataPipeline
-pipeline = TreasuryDataPipeline()
-result = pipeline.run()
-print(result)
-"
-```
-
----
-
-## 🐛 Troubleshooting
-
-### **Database Connection Issues**
-
-```bash
-# Check database is running
-docker ps | grep postgres
-
-# Check connection
-docker exec -it treasury_postgres psql -U treasury_user -d treasury_db
-
-# Reset database
-docker-compose down -v
-docker-compose up -d
-```
-
-### **Data Not Loading**
-
-```bash
-# Check logs
-docker logs treasury_app --tail 100
-
-# Manually trigger data load
-docker exec -it treasury_app python scheduler.py
-
-# Check data count
-docker exec -it treasury_postgres psql -U treasury_user -d treasury_db -c "SELECT COUNT(*) FROM auctions;"
-```
-
-### **Dashboard Not Accessible**
-
-```bash
-# Check container status
-docker-compose ps
-
-# Restart services
-docker-compose restart app
-
-# Check Nginx (if deployed)
-sudo systemctl status nginx
-sudo nginx -t
-```
-
-[⬆ Back to top](#-treasury-auction--fiscal-policy-analytics)
+## D. Future Prediction
+Until now, the articles data for 2026 has not been processed to quantify the shifts in the economical indices yet. However, with numorous amount of articles discussing about the recent conflict between US and Iran which dramatically disrupted the global supply chains, based on historical data, the Trade Index would rise and reach a new peak. Additionally, as the market trend is no longer absorbing the policy news, the Bid-to-Cover Ratio would potentially still go up above the baseline, along with higher interest rate demanded from the bidders to hedge against the inflation of the risk from the war. The Yield Difference would still persist to be large and the bidder may continue to favor long-term investment to avoid any changes in policy from Trump until a future presidential transition occurs.
