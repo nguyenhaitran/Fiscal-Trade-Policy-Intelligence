@@ -26,7 +26,8 @@ This dashboard resolves these issues by standardizing the economical news into T
 ### 1. Data Extraction
 - Unstructured Data Processing: To optimize operational costs and maintain data privacy, archival articles were sourced from the Wall Street Journal via ProQuest. A custom ETL Python script was developed to perform character recognition and tokenization on PDF sources. These tokens were then processed through a classification model to generate daily Trade, Tariff, and Fiscal Sentiment Indices.
 - API Integration & Automation: Developed a robust Python pipeline to ingest real-time data from the TreasuryDirect API. The script manages API pagination, historical filtering (post-1998), and credential-based authentication via Google Cloud Service Accounts to automate data fetching into a Google Sheets repository.
-- Schema Design: During the extraction phase, the script programmatically partitioned the raw data into a relational structure including three core tables: Auction, Security, and Bidder.
+- Schema Design: During the extraction phase, the script programmatically partitioned the raw data into a relational structure including three core tables: Auction, Security, and Bidder. 
+
 
 ### 2. Data Transformation (Power Query)
 - Maturity Normalization: Standardized fragmented reissued debt data by utilizing "originalSecurityTerm". This allowed for the categorization of complex securities into "Short," "Medium," and "Long-Term" maturities for consistent longitudinal analysis.
