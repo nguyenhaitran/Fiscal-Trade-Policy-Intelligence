@@ -2,7 +2,7 @@
 
 An ultimate dashboard analyzing U.S. Treasury auction data and its correlation with economic sentiment (fiscal, trade, and tariff) derived from news articles. 
 
-![Dashboard Overview](Dashboard/screenshots/Indicies vs. Treasury Result.png)
+![Dashboard Overview](Fiscal-Trade-Policy-Intelligence/Dashboard/screenshots/Indicies vs. Treasury Result.png) 
 
 Tech Stack: Python, PowerBI, Google Service
 
