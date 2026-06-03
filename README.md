@@ -2,6 +2,8 @@
 
 An ultimate dashboard analysing U.S. Treasury auction data and its correlation with economic sentiment (fiscal, trade, and tariff) derived from news articles.
 
+> 💡 **Data Refresh Schedule:** The US Auction data pipeline automates updates daily, which can be seen on the `US Auction` Page. Viewers are highly recommended to check the dashboard after **1:00 PM Perth Time (AWST)** to ensure the most recent auction results have fully populated.
+
 **Tech Stack: Python, Power BI, Google Service**
 
 ![Dashboard Overview](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Indicies%20vs.%20Treasury%20Result.png)
@@ -48,6 +50,8 @@ This dashboard resolves these issues by standardising the economic news into Tra
 
 ## C. Insights
 ### 1. Economic Policy Sentiment (2015–2025)
+
+> **Economic Indices Page Reminder:** This view reflects periodic batch processing of unstructured archival news articles. It is **not automatically refreshed in real-time**, as it requires scheduled ETL model runs to parse and tokenise new text data.
 
 ![Economic Indices](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Economic%20Indices.png)
 
