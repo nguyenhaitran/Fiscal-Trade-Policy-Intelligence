@@ -2,7 +2,7 @@
 
 An ultimate dashboard analysing U.S. Treasury auction data and its correlation with economic sentiment (fiscal, trade, and tariff) derived from news articles.
 
-Tech Stack: Python, Power BI, Google Service
+**Tech Stack: Python, Power BI, Google Service**
 
 ![Dashboard Overview](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Indicies%20vs.%20Treasury%20Result.png)
 
@@ -13,7 +13,7 @@ Tech Stack: Python, Power BI, Google Service
 The US Treasury market is the biggest and most liquid financial market in the world, as it is the main source of funding for US government activities. Treasury securities are regarded as the ultimate "risk-free" asset because they are backed by the United States's full faith and credit. As a result, they set the standard for interest rates globally and have an impact on everything from house mortgages to international trade finance.
 
 ### 2. Economic Policy and Indices
-Treasury auctions are highly sensitive to Economic Policy Indices. The changes in Trade, Tariff and Fiscal policy create market sentiment that directly impacts investors' decisions.
+Treasury auctions are highly sensitive to Economic Policy Indices. Changes in Trade, Tariff, and Fiscal policy create market sentiment that directly impacts investors' decisions.
 - Fiscal News shows how a government modifies their spending and tax rates to monitor and influence the national economy. They affect people's expectations around debt supply and long-term sustainability. 
 - Trade and Tariff News represent how a government exchanges goods and services between countries and the tax or duty imposed by that government on those imported or exported goods and services. This news can affect how much people are interested in the auctions (Bid-to-Cover Ratio) and how big the gap between the highest and lowest yields for the auctions (Yield Tail or Yield Difference).
 
@@ -28,7 +28,7 @@ This dashboard resolves these issues by standardising the economic news into Tra
 ### 1. Data Extraction
 - Unstructured Data Processing: To optimise operational costs and maintain data privacy, archival articles were sourced from the Wall Street Journal via ProQuest. A custom ETL Python script was developed to perform character recognition and tokenisation on PDF sources. These tokens were then processed through a classification model to generate daily Trade, Tariff, and Fiscal Sentiment Indices.
 - API Integration & Automation: Developed a robust Python pipeline to ingest real-time data from the TreasuryDirect API. The script manages API pagination, historical filtering (post-1998), and credential-based authentication via Google Cloud Service Accounts to automate data fetching into a Google Sheets repository.
-- Schema Design: During the extraction phase, the script programmatically partitioned the raw data into a relational structure, including three core tables: Auction, Security, and Bidder. 
+- Schema Design: During the extraction phase, the script programmatically partitioned the raw data into a relational structure, including three core tables:`Auction`, `Security`, and `Bidder`. 
 
 ![Data Modelling](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Model.png) 
 
@@ -86,7 +86,21 @@ The decade between 2015 and 2025 illustrates a profound connection between Washi
 
 - Pricing for Risk: A clear positive correlation exists between policy sentiment spikes and the cost of borrowing. As Fiscal, Trade, or Tariff indices escalate, market participants demand higher Interest Rates and Median Yields to compensate for perceived policy risk.
 
-- Inelastic Demand: Despite price fluctuations, the Bid-to-Cover Ratio remains extremely stable across all index spikes. This validates the US Treasury's status as a safe asset; investors may adjust their price (Yield), but their fundamental intent to invest on the debts remains unchanged.
+- Inelastic Demand: Despite price fluctuations, the Bid-to-Cover Ratio remains extremely stable across all index spikes. This validates the US Treasury's status as a safe asset; investors may adjust their price (Yield), but their fundamental intent to invest in the debt remains unchanged.
 
-## D. Future Prediction
+## D. Other Dashboard Views
+
+**Accepted vs. Tendered Comparison**: An analytics page evaluating the relationship between total market demand and the final volume accepted by the Treasury.
+
+![Accepted vs Tendered](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Accepted%20vs%20Tendered.png)
+
+**Security Overview**: An overview tracking historical information of three types of security that the US Treasury are hosting the auctions (`Bill`, `Bond`, and `Note`).
+
+![Security Overview](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Security%20Overview.png)
+
+**Yield Analysis**: A specialised view charting historical yield movements, designed to highlight shifting trends and anomalies across the yield curve.
+![Yield Difference](https://github.com/nguyenhaitran/Fiscal-Trade-Policy-Intelligence/blob/main/Dashboard/screenshots/Yield%20Analysis.png)
+  
+
+## E. Future Prediction
 Until now, the articles' data for 2026 have not been processed to quantify the shifts in the economic indices. However, with numerous articles discussing the recent conflict between the US and Iran, which dramatically disrupted the global supply chains, based on historical data, the Trade Index would rise and reach a new peak. Additionally, as the market trend is no longer absorbing the policy news, the Bid-to-Cover Ratio would potentially still go up above the baseline, along with a higher interest rate demanded from the bidders to hedge against the inflation of the risk from the war. The Yield Difference would still persist to be large, and the bidder may continue to favour long-term investment to avoid any changes in policy from Trump until a future presidential transition occurs.
