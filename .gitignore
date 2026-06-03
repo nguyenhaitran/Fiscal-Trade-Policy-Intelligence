@@ -72,3 +72,6 @@ $RECYCLE.BIN/
 # Credentials and sensitive information
 *.json
 .Google_Cred/
+
+# hide the articles file
+fiscal_policy_index/data_articles/
