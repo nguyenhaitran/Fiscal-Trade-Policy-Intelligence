@@ -74,4 +74,4 @@ $RECYCLE.BIN/
 .Google_Cred/
 
 # hide the articles file
-fiscal_policy_index/data_articles/
+fiscal_policy_index/data_articles/*
