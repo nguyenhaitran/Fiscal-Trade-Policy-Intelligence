@@ -21,7 +21,6 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Virtual Environments
 venv/
@@ -70,5 +69,4 @@ $RECYCLE.BIN/
 .Trash-*
 
 # Credentials and sensitive information
-*.json
-.Google_Cred/
+Google_Cred/Google_Cred.json
