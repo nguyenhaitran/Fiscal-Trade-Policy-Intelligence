@@ -70,3 +70,5 @@ $RECYCLE.BIN/
 
 # Credentials and sensitive information
 Google_Cred/Google_Cred.json
+
+.fiscal_policy_index/data_articles/*
