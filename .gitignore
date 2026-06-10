@@ -69,5 +69,13 @@ $RECYCLE.BIN/
 .Trash-*
 
 # Credentials and sensitive information
+<<<<<<< HEAD
 Google_Cred/Google_Cred.json
 *.pdf
+=======
+*.json
+.Google_Cred/
+
+# hide the articles file
+fiscal_policy_index/data_articles/*
+>>>>>>> main
