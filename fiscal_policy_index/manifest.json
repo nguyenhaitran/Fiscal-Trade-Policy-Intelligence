@@ -455,98 +455,6 @@
         "last_processed": "2026-06-07 00:46:08",
         "status": "completed"
     },
-    "ProQuestDocuments-22-23_8.pdf": {
-        "last_processed": "2026-06-07 00:56:01",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_9.pdf": {
-        "last_processed": "2026-06-07 00:57:11",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_1.pdf": {
-        "last_processed": "2026-06-07 00:58:21",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_10.pdf": {
-        "last_processed": "2026-06-07 00:59:31",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_11.pdf": {
-        "last_processed": "2026-06-07 01:00:40",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_2.pdf": {
-        "last_processed": "2026-06-07 01:01:54",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_13.pdf": {
-        "last_processed": "2026-06-07 01:02:43",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_12.pdf": {
-        "last_processed": "2026-06-07 01:03:58",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_3.pdf": {
-        "last_processed": "2026-06-07 01:05:13",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_7.pdf": {
-        "last_processed": "2026-06-07 01:06:23",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_6.pdf": {
-        "last_processed": "2026-06-07 01:07:42",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_4.pdf": {
-        "last_processed": "2026-06-07 01:08:58",
-        "status": "completed"
-    },
-    "ProQuestDocuments-22-23_5.pdf": {
-        "last_processed": "2026-06-07 01:10:14",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_8.pdf": {
-        "last_processed": "2026-06-07 01:12:42",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_10.pdf": {
-        "last_processed": "2026-06-07 01:13:54",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_9.pdf": {
-        "last_processed": "2026-06-07 01:15:17",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_2.pdf": {
-        "last_processed": "2026-06-07 01:16:38",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_3.pdf": {
-        "last_processed": "2026-06-07 01:17:57",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_1.pdf": {
-        "last_processed": "2026-06-07 01:19:03",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_4.pdf": {
-        "last_processed": "2026-06-07 01:20:21",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_5.pdf": {
-        "last_processed": "2026-06-07 01:21:42",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_7.pdf": {
-        "last_processed": "2026-06-07 01:23:01",
-        "status": "completed"
-    },
-    "ProQuest Documents 23-24_6.pdf": {
-        "last_processed": "2026-06-07 01:24:19",
-        "status": "completed"
-    },
     "ProQuestDocuments-2025-08-16_11.pdf": {
         "last_processed": "2026-06-07 01:29:12",
         "status": "completed"
@@ -609,6 +517,98 @@
     },
     "ProQuestDocuments-2025-08-18_1.pdf": {
         "last_processed": "2026-06-07 01:47:23",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_8.pdf": {
+        "last_processed": "2026-06-07 20:57:17",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_10.pdf": {
+        "last_processed": "2026-06-07 20:58:37",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_9.pdf": {
+        "last_processed": "2026-06-07 21:00:04",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_2.pdf": {
+        "last_processed": "2026-06-07 21:01:29",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_3.pdf": {
+        "last_processed": "2026-06-07 21:02:47",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_1.pdf": {
+        "last_processed": "2026-06-07 21:03:56",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_4.pdf": {
+        "last_processed": "2026-06-07 21:05:13",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_5.pdf": {
+        "last_processed": "2026-06-07 21:06:30",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_7.pdf": {
+        "last_processed": "2026-06-07 21:07:52",
+        "status": "completed"
+    },
+    "ProQuest Documents 23-24_6.pdf": {
+        "last_processed": "2026-06-07 21:09:11",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_8.pdf": {
+        "last_processed": "2026-06-07 21:26:22",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_9.pdf": {
+        "last_processed": "2026-06-07 21:27:35",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_1.pdf": {
+        "last_processed": "2026-06-07 21:28:48",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_10.pdf": {
+        "last_processed": "2026-06-07 21:30:00",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_11.pdf": {
+        "last_processed": "2026-06-07 21:31:12",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_2.pdf": {
+        "last_processed": "2026-06-07 21:32:26",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_13.pdf": {
+        "last_processed": "2026-06-07 21:33:15",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_12.pdf": {
+        "last_processed": "2026-06-07 21:34:24",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_3.pdf": {
+        "last_processed": "2026-06-07 21:35:36",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_7.pdf": {
+        "last_processed": "2026-06-07 21:36:45",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_6.pdf": {
+        "last_processed": "2026-06-07 21:37:54",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_4.pdf": {
+        "last_processed": "2026-06-07 21:39:04",
+        "status": "completed"
+    },
+    "ProQuestDocuments-22-23_5.pdf": {
+        "last_processed": "2026-06-07 21:40:15",
         "status": "completed"
     }
 }
