@@ -6,8 +6,6 @@ An ultimate dashboard analysing U.S. Treasury auction data and its correlation w
 
 **Tech Stack: Python, Power BI, Google Service**
 
-![Dashboard Overview]()
-
 ---
 
 ## A. Background
