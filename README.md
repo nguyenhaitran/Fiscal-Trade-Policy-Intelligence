@@ -1,6 +1,6 @@
 # US Treasury Auction & Economic Sentiment Analytic Dashboard
 
-An ultimate dashboard analysing U.S. Treasury auction data and its correlation with economic sentiment (fiscal, trade, and tariff) derived from news articles.
+An ultimate dashboard analysing U.S. Treasury auction data and its correlation with changes from economic policies (fiscal and trade) derived from news articles.
 
 > 💡 **Data Refresh Schedule:** The US Auction data pipeline automates updates daily, which can be seen on the `US Auction` Page. Viewers are highly recommended to check the dashboard after **1:00 PM Perth Time (AWST)** to ensure the most recent auction results have fully populated.
 
@@ -63,7 +63,7 @@ This dashboard resolves these issues by standardising the economic news into Tra
 - The Trade Policy Index during the Trump administration reached intensities 2–2.5 times higher than those recorded during the COVID-19 pandemic or before the end of 2016. This significantly high index is because President Trump made many changes when he was in administration, leading to a significant rise in the volume of Trade Policy articles. The Fiscal Policy Index also shared a similar trend as the Trade Policy Index, with around 20% to 40% increased within the Trump administration.
 - A granular shift in policy narrative was observed between Trump's election cycles: 
     - The 2016–2020 period was characterised by targeted trade negotiations, specifically with China (US-China trade war).
-    - The 2024 election cycle has seen a pivot toward broader, global tariff frameworks, which is also a topic within trade policy discussion.
+    - The 2024 election cycle has seen a pivot toward broader, global  frameworks, which is also a topic within trade policy discussion.
 
 ### 2. US Treasury Auctions Dynamics (2010–Present)
 - There was a long-term downward trend observed in the Bid-to-Cover Ratio. This signals deep shifts in institutional primary dealer absorption capacity over time. While demand remained above the historical baseline (which will be discussed in the Accepted vs Tendered Comparison page later), the recent trend indicates an overall change in how the market is willing to invest.
@@ -79,7 +79,7 @@ The decade between 2015 and 2025 illustrates a profound connection between Trade
 
 ### 4. Accepted vs Tendered Amount Comparison
 - The total amount of capital tendered by investors has grown exponentially since 2010, aggressively scaling from roughly $24 Trillion to a peak of over $65 Trillion in 2025. Conversely, the actual volume accepted by the Treasury has grown at a much slower, controlled pace from $7 trillion to $24 Trillion. This wide gap demonstrates that despite shifting political and economic regimes, market liquidity and bidders' appetite for US sovereign debt remain extremely large. 
-- Looking at the internal stacked segments, Primary Dealers (dark green) and Competitive Bidders (light orange) systematically absorb the largest percentage share of the Tendered column during high-volume spikes, most notably between 2023 and 2025, where their bid volume crossed $20 and $30 Trillion respectively. Additionally, the Accepted amounts  remained so small for Primary Dealers and Competitive Bidders, with the accepted amount around $3 Trillion and $11 Trillion, respectively. This highlights their structural role as the market’s primary backstop during aggressive debt expansion cycles and how competitive they are.
+- Looking at the internal stacked segments, Primary Dealers (dark green) and Competitive Bidders (light orange) systematically absorb the largest percentage share of the Tendered column during high-volume spikes, most notably between 2023 and 2025, where their bid volume crossed $20 and $30 Trillion, respectively. Additionally, the Accepted amounts  remained so small for Primary Dealers and Competitive Bidders, with the accepted amount around $3 Trillion and $11 Trillion, respectively. This highlights their structural role as the market’s primary backstop during aggressive debt expansion cycles and how competitive they are.
 
 ### 4. Policy Indices vs. Auction Metrics Correlation
 - Both Trade and Fiscal policy uncertainty show a clear, positive correlation with rising interest rates. As political changes intensify in the media, investors demand a higher yield premium to hedge against policy risks.
