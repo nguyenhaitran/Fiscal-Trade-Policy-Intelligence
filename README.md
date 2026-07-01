@@ -1,4 +1,4 @@
-# US Treasury Auction & Economic Policy Analytic Dashboard
+# U.S. Treasury Auction & Economic Policy Analytic Dashboard
 
 An ultimate dashboard analysing U.S. Treasury auction data and its correlation with changes from economic policies (fiscal and trade) derived from news articles.
 
@@ -22,7 +22,7 @@ Empirical modelling from 2015 to 2025 reveals critical market insights: while es
 
 ## B. Project Objective
 ### 1. The Importance of The U.S. Treasury Auction
-The US Treasury market is the biggest and most liquid financial market in the world, as it is the main source of funding for U.S. government activities. Treasury securities are regarded as the ultimate "risk-free" asset because they are backed by the United States's full faith and credit. As a result, they set the standard for global economic changes and have an impact on everything, from interest rate adjustments to international trade finance.
+The US Treasury market is the biggest and most liquid financial market in the world, as it is the main source of funding for U.S. government activities. Treasury securities are regarded as the ultimate "risk-free" asset because they are backed by the United States' full faith and credit. As a result, they set the standard for global economic changes and have an impact on everything, from interest rate adjustments to international trade finance.
 
 In combination with analysing the auction results, understanding the underlying drivers of auction demand, high and low yield differences, and bidding behaviour is also significant. One of the driving factors that affects the investing behaviours of investors and dealers is how the shifts in economic policies are communicated to them, and how those economy-change news affects the behaviors.
 
